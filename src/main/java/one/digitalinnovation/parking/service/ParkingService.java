@@ -1,5 +1,6 @@
 package one.digitalinnovation.parking.service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,15 +18,34 @@ public class ParkingService {
 
 	static {
 		var id = getUUID();
+		var id1 = getUUID();
 		Parking parking = new Parking(id, "LVB3E09", "DF", "HONDA CIVIC", "CINZA");
+		Parking parking2 = new Parking(id1, "JJX-1479", "RJ", "MERCEDES-BENZ C180 KOMPRESSOR", "PRETO");
 		parkingMap.put(id, parking);
+		parkingMap.put(id1, parking2);
 	}
 
 	public List<Parking> findAll() {
 		return parkingMap.values().stream().collect(Collectors.toList());
 	}
 
+	public Parking findById(String id) {
+		// TODO Auto-generated method stub
+		return parkingMap.get(id);
+	}
+
 	private static String getUUID() {
 		return UUID.randomUUID().toString().replace("-", "");
 	}
+
+	public Parking create(Parking parkingCreate) {
+		String uuid = getUUID();
+		parkingCreate.setId(uuid);
+		parkingCreate.setEntryDate(LocalDateTime.now());
+		parkingMap.put(uuid, parkingCreate);
+		return parkingCreate;
+	}
+
+
+
 }
