@@ -1,0 +1,21 @@
+server:
+ port: 80
+ error:
+  include-stacktrace: never
+  include-message: always
+spring:
+ datasource:
+  driverClassName: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/parking?useTimezone=true&serverTimezone=UTC&useLegacyDate
+  username: root
+  password: root
+ jpa:
+  show-sql: true
+  hibernate:
+   ddl-auto: update
+  properties:
+   hibernate:
+    '[format_sql]': true
+logging:
+  level:
+    '[org.hibernate.type]': trace
